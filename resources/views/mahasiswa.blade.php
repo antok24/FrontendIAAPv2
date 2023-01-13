@@ -25,6 +25,22 @@
             </ul>
         </nav>
 
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card mt-2">
             <h5 class="card-header">Data Mahasiswa</h5>
             <div class="card-body">
@@ -40,16 +56,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach ($datas['data'] as $data)
+                    @foreach ($datas as $a)
                       <tr>
-                        <th scope="row">{{ $data->userId }}</th>
-                        <td>{{ $data['id'] }}</td>
-                        <td>{{ $data['title'] }}</td>
-                        <td>{{ $data['title'] }}</td>
-                        <td>{{ $data['title'] }}</td>
-                        <td>{{ $data['title'] }}</td>
+                        <th scope="row">{{ isset($a['id']) ? $a['id'] : '' }}</th>
+                        <td>{{ isset($a['nim']) ? $a['nim'] : '' }}</td>
+                        <td>{{ isset($a['nama']) ? $a['nama'] : '' }}</td>
+                        <td>{{ isset($a['prodi']) ? $a['prodi'] : '' }}</td>
+                        <td>{{ isset($a['fakultas']) ? $a['fakultas'] : '' }}</td>
+                        <td>{{ isset($a['hp']) ? $a['hp'] : '' }}</td>
                       </tr>
-                      @endforeach
+                    @endforeach
                     </tbody>
                 </table>
             </div>

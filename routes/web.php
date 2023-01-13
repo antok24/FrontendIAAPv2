@@ -17,6 +17,6 @@ use App\Http\Controllers\MahasiswaController;
 //     return view('welcome');
 // });
 
-Route::get('/', [MahasiswaController::class, 'index']);
+Route::get('/', [MahasiswaController::class, 'index'])->name('home');
 Route::get('/mahasiswa', [MahasiswaController::class, 'create']);
-Route::post('/mahasiswa', [MahasiswaController::class, 'store'])->name('storemahasiswa');
+Route::post('/mahasiswa', [MahasiswaController::class, 'simpan'])->name('storemahasiswa');

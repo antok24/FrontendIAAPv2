@@ -25,6 +25,22 @@
             </ul>
         </nav>
 
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card mt-2">
             <h5 class="card-header">Add Mahasiswa</h5>
             <div class="card-body">
@@ -35,7 +51,7 @@
                         <label for="inputPassword6" class="col-form-label">NIM</label>
                         </div>
                         <div class="col-auto">
-                        <input type="text" name="nim" class="form-control" aria-describedby="passwordHelpInline" required>
+                        <input type="text" name="nim" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
 
@@ -44,7 +60,7 @@
                         <label for="inputPassword6" class="col-form-label">Nama</label>
                         </div>
                         <div class="col-auto">
-                        <input type="text" name="nama" class="form-control" aria-describedby="passwordHelpInline" required>
+                        <input type="text" name="nama" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-auto">
@@ -52,7 +68,7 @@
                         <label for="inputPassword6" class="col-form-label">Prodi</label>
                         </div>
                         <div class="col-auto">
-                        <input type="text" name="prodi" class="form-control" aria-describedby="passwordHelpInline" required>
+                        <input type="text" name="prodi" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
 
@@ -61,7 +77,7 @@
                         <label for="inputPassword6" class="col-form-label">Fakultas</label>
                         </div>
                         <div class="col-auto">
-                        <input type="text" name="fakultas" class="form-control" aria-describedby="passwordHelpInline" required>
+                        <input type="text" name="fakultas" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
 
@@ -70,12 +86,17 @@
                         <label for="inputPassword6" class="col-form-label">Nomor Hp</label>
                         </div>
                         <div class="col-auto">
-                        <input type="text" name="hp" class="form-control" aria-describedby="passwordHelpInline" required>
+                            <input type="text" name="hp" class="form-control" aria-describedby="passwordHelpInline">
+                            @if ($errors->has('hp'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('hp') }}</strong>
+                            </span>
+                            @endif
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-auto">
                         <div class="col-md-1">
-                            <button type="button" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </form> 
